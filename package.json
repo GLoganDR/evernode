@@ -1,19 +1,25 @@
 {
-  "name": "hapi-technologies",
+  "name": "evernode",
   "version": "1.0.0",
-  "description": "Hapi Technologies",
+  "description": "testing for angular notes app",
   "engines": {
     "node": "0.10.x"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nss-cohort-2014-06-07/hapi-technologies"
+    "url": "https://github.com/GLoganDR/evernode"
+  },
+  "bin": {
+    "coveralls": "./node_modules/coveralls/bin/coveralls.js"
   },
   "scripts": {
     "start": "node server/index.js",
-    "postinstall": "grunt deploy"
+    "postinstall": "grunt deploy",
+    "syntax": "grunt build",
+    "test": "make test",
+    "coveralls": "make test-cov | coveralls"
   },
-  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "author": "Logan Richardson <g.logan.richardson@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.0.28",
