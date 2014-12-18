@@ -19,7 +19,9 @@ User.register = function(obj, cb){
     user.avatar = avatar;
     user.token = token;
     pg.query('insert into users (username, password, avatar, token) values ($1, $2, $3, $4) returning id', [user.username, user.password, user.avatar, user.token], function(err, results){
+      console.log(err, results);
       if(err){return cb(true);}
+      console.log(err, results);
       download(obj.avatar, file, cb);
     });
   });
