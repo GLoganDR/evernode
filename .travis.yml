@@ -5,6 +5,7 @@ services:
   - postgresql
 addons:
   postgresql: "9.3"
+  sauce_connect: true
 notifications:
   email: false
 script:
@@ -13,8 +14,11 @@ script:
 before_script:
   - psql -c 'create database evernode_test;' -U postgres
   - cd test/scripts; ./create_db.sh evernode_test; cd ../..;
+  - PORT=9000 node server/index.js&
+  - sleep 5
 after_script:
   - npm run coveralls
+  - npm run e2e
 env:
   global:
     - DATABASE_URL=postgres://postgres@localhost/evernode_test
@@ -23,3 +27,7 @@ env:
     - secure: "nFZBa6FGJTyFmvFpLClk8LsgsOn1WjkGSTWjNkj8VGUSLX2GEmUu6dyurk2L+XktcrLma+7Ooy2eDk24spvfZKp+ayTfLnr4bHVTbxCaHxiTVNyfaHQOm8xV/8ROBr5QRNP2wbrhRi9i8cgZHK+teonSHqHT+uSOTRnET1GGHEs="
     # AWS_ACCESS_KEY_ID
     - secure: "UwDQB4JXF/zp8iwacWppMhXYme27bsLuygVgRXOnKWotokzIr54Mnc2IvqDDvOUnYNKnBOhNaxDUyLs8ivSAyj4aorfgNTfHnu6mWEzWM/1ZV0ttRDdBqhUmZGsl02eSwjCc7VHKqpX9mbx9DFGHksw/jnS+/Muj80mru0bxL98="
+    #SAUCE_USERNAME
+    - secure: "Z/rsdc/C8JSo8HUSd0vyH4PGMsmNe3nin/HCtVXWORuRcLlgXzSaOlygiSgVFXR5WO60T4YpV/7p7tdoujYe7VzWCsuVGKezoRkboXIsaF37qtVqLUl69vsg+MEEFx5y3oyvU8RQAMnm0kodiMWxe47aylKjvxq9tajC0yOjpp4="
+    #SAUCE_ACCESS_KEY
+    - secure: "kC2/IHrEZr3v24u7DxaOgInrUOYZQddZn5RojD5V9jxAMWwZMfVLNAynIKsfimUR8b/HxPW1gtjbsJvLPN0kBYF192BsCkYgHZwep6h7lEeBQrmdMjoBTXJFRnE8KokvbPtooW2lqa925fyQqKk/NvIy7SaybeGE831X2Mwe3QQ="
