@@ -19,5 +19,3 @@ describe('register', function(){
     expect(element(by.css('div[ui-view] > h1')).getText()).toEqual('login');
   });
 });
-
-//maybe//
