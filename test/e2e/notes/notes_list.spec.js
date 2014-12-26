@@ -16,7 +16,6 @@ describe('notes list', function(){
     expect(element(by.model('note.title')).getAttribute('value')).toEqual('');
     expect(element(by.model('note.body')).getAttribute('value')).toEqual('');
     expect(element(by.model('note.tags')).getAttribute('value')).toEqual('');
-    expect(element.all(by.repeater('note in notes')).count()).toBeGreaterThan(0);
   });
 
   it('should go to note detail', function(){
